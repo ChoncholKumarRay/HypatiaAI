@@ -1,0 +1,179 @@
+.hero {
+  margin: 0 0;
+  padding: 0 0;
+  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/bg.jpg");
+  background-size: cover;
+  background-position: top;
+  font-family: sans-serif;
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #f3f7ec;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero p {
+  font-weight: 600;
+  font-size: 1.25rem;
+  font-family: sans-serif;
+  color: #fffae6;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.prompt-form {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.prompt-container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.prompt-input {
+  width: 100%;
+  height: 50px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  background-color: #eeeeee;
+  color: #151515;
+  opacity: 0.75;
+  padding: 0 17px;
+  border: 1px solid black;
+  margin-right: 5px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+.btn {
+  height: 50px;
+  padding: 0 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 10px;
+  border-color: none;
+  cursor: pointer;
+  color: white;
+  background: #005c78;
+}
+
+.container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.option {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  user-select: none;
+  background-color: black;
+  opacity: 0.6;
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.option.selected {
+  background-color: #6295a2;
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .prompt-form {
+    margin: 0 auto;
+  }
+  .prompt-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .prompt-input {
+    margin: 10px;
+    width: 85%;
+  }
+  .container {
+    width: 100%;
+    margin-right: 10px;
+    justify-content: center;
+  }
+  .option {
+    font-size: 0.75rem;
+    margin-left: 10px;
+    padding: 3px 7px;
+  }
+  .btn {
+    margin-left: 10px;
+    height: 45px;
+    font-size: 1.15rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .option {
+    font-size: 0.75rem;
+    margin-left: 10px;
+    padding: 3px 10px;
+  }
+}

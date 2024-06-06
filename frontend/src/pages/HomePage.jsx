@@ -1,12 +1,10 @@
-// frontend/src/pages/HomePage.jsx
-
 import React from "react";
+import Hero from "../components/Hero/Hero";
 
 const HomePage = () => {
   return (
     <div className="home-page">
-      <h1>Welcome to My Web Project!</h1>
-      <p>This is the home page content.</p>
+      <Hero />
     </div>
   );
 };
