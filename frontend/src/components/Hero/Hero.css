@@ -1,6 +1,9 @@
 .hero {
   margin: 0 0;
   padding: 0 0;
+}
+
+.hero-container {
   height: 400px;
   position: relative;
   display: flex;
@@ -11,10 +14,10 @@
   background-size: cover;
   background-position: top;
   font-family: sans-serif;
-  z-index: 0;
+  z-index: 1;
 }
 
-.hero::before {
+.hero-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -22,15 +25,15 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.hero > * {
-  position: relative;
   z-index: 2;
 }
 
-.hero h1 {
+.hero-container > * {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-container h1 {
   font-size: 2.25rem;
   font-weight: 700;
   color: #f3f7ec;
@@ -38,7 +41,7 @@
   text-align: center;
 }
 
-.hero p {
+.hero-container p {
   font-weight: 600;
   font-size: 1.25rem;
   font-family: sans-serif;
@@ -125,7 +128,7 @@
   opacity: 0.6;
   color: #fff;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .option.selected {
@@ -134,10 +137,10 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .hero h1 {
+  .hero-container h1 {
     font-size: 1.8rem;
   }
-  .hero p {
+  .hero-container p {
     font-size: 1rem;
   }
   .prompt-form {

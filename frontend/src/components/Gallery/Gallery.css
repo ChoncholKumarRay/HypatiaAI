@@ -1,0 +1,82 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0 15px;
+  max-width: 1250px;
+  margin: 50px auto;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.card {
+  width: 285px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card.loading {
+  border: 1px solid #fff;
+  background: #eef7ff;
+  /* box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); */
+}
+
+.card:not(.loading):hover {
+  border: 1px solid #ccc;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card.loading img {
+  width: 80px;
+  height: 80px;
+}
+
+.card .download-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: #fff;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card:not(.loading):hover .download-btn {
+  display: flex;
+}
+
+.card .download-btn img {
+  width: 14px;
+  height: 14px;
+}
+@media screen and (max-width: 760px) {
+  .card:not(.loading) .download-btn {
+    display: flex;
+  }
+
+  .gallery {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    width: 100%;
+  }
+}
