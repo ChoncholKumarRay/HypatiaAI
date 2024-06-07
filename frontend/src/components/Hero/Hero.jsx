@@ -1,12 +1,37 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import "./Hero.css";
+
+// Import images
+import img1 from "../../assets/img-1.jpg";
+import img2 from "../../assets/img-2.jpg";
+import img3 from "../../assets/img-3.jpg";
+import img4 from "../../assets/img-4.jpg";
+import downloadIcon from "../../assets/download.svg";
+
+const generateRandomString = (length) => {
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
+// Unique FileName Generation for each image
+const generateUniqueFilename = () => {
+  const randomString = generateRandomString(8);
+  const currentTime = new Date().getTime();
+  return `${randomString}_${currentTime}.jpg`;
+};
 
 const Hero = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [promptText, setPromptText] = useState("");
-  const [isGeneratng, setIsGenerating] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [image, setImage] = useState(null);
+  const galleryRef = useRef(null);
 
   const toggleSelection = (option) => {
     setSelectedOptions((prevSelected) => {
@@ -16,6 +41,22 @@ const Hero = () => {
         return [...prevSelected, option];
       }
     });
+  };
+
+  const handleDownload = (event, imageSrc) => {
+    event.preventDefault();
+
+    const link = document.createElement("a");
+    link.href = imageSrc;
+    link.download = generateUniqueFilename();
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Scroll to the gallery section
+    if (galleryRef.current) {
+      galleryRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -36,24 +77,20 @@ const Hero = () => {
       artStyles: artStyles,
     };
 
-    // console.log(promptText);
-    // console.log(artStyles);
-    // console.log(data);
-
     try {
-      // Make sure to include the correct URL and port for your backend
       const response = await axios.post(
         "http://localhost:3000/api/sendPrompt",
         data
       );
+      console.log("Response from server:", response);
       console.log("Response from server:", response.data);
+      console.log("Image1 URL: ", response.data.img1);
+      // setImage(response.data.imageURL); // Assuming response.data.imageURL contains the image URL
       setIsGenerating(false);
     } catch (error) {
       console.error("Error sending data to server:", error);
+      setIsGenerating(false);
     }
-
-    // console.log("Type of promptText:", typeof promptText);
-    // console.log("Type of selectedOptions:", typeof artStyles);
   };
 
   return (
@@ -71,8 +108,8 @@ const Hero = () => {
                 value={promptText}
                 onChange={(e) => setPromptText(e.target.value)}
               />
-              <button type="submit" className="btn" disabled={isGeneratng}>
-                {isGeneratng ? "Generating..." : "Generate"}
+              <button type="submit" className="btn" disabled={isGenerating}>
+                {isGenerating ? "Generating..." : "Generate"}
               </button>
             </div>
             <div className="container">
@@ -102,6 +139,44 @@ const Hero = () => {
               ))}
             </div>
           </form>
+        </div>
+      </section>
+      <section className="gallery" ref={galleryRef}>
+        <div className="card">
+          <img src={img1} alt="" id="magic-image1" />
+          <button
+            className="download-btn"
+            onClick={(event) => handleDownload(event, img1)}
+          >
+            <img src={downloadIcon} alt="Download" />
+          </button>
+        </div>
+        <div className="card">
+          <img src={img2} alt="" id="magic-image2" />
+          <button
+            className="download-btn"
+            onClick={(event) => handleDownload(event, img2)}
+          >
+            <img src={downloadIcon} alt="Download" />
+          </button>
+        </div>
+        <div className="card">
+          <img src={img3} alt="" id="magic-image3" />
+          <button
+            className="download-btn"
+            onClick={(event) => handleDownload(event, img3)}
+          >
+            <img src={downloadIcon} alt="Download" />
+          </button>
+        </div>
+        <div className="card">
+          <img src={img4} alt="" id="magic-image4" />
+          <button
+            className="download-btn"
+            onClick={(event) => handleDownload(event, img4)}
+          >
+            <img src={downloadIcon} alt="Download" />
+          </button>
         </div>
       </section>
     </>
