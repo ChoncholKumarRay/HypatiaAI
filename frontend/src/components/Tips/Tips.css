@@ -1,0 +1,48 @@
+.tips-section {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #9db2bf;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.tips-title {
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+}
+
+.tips-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.tip-item {
+  background: #f1f6f9;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 5px solid #4949e7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tip-item:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .tips-section {
+    margin: 0;
+  }
+}

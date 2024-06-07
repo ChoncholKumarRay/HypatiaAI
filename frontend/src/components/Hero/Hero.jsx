@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 import "./Hero.css";
 
 const Hero = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [inputText, setInputText] = useState("");
+  const [promptText, setPromptText] = useState("");
+  const [isGeneratng, setIsGenerating] = useState(false);
 
   const toggleSelection = (option) => {
     setSelectedOptions((prevSelected) => {
@@ -18,40 +20,41 @@ const Hero = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (inputText.trim() === "") {
+    if (promptText.trim() === "") {
       alert("Please fill up the prompt to generate image.");
       return;
     }
 
+    setIsGenerating(true); // Disabling the generate button
+
+    const artStyles = selectedOptions
+      .map((option) => `/${option.toLowerCase()}`)
+      .join(", ");
+
     const data = {
-      inputText: inputText,
-      selectedOptions: selectedOptions,
+      promptText: promptText,
+      artStyles: artStyles,
     };
 
-    console.log(inputText);
-    console.log(selectedOptions);
+    console.log(promptText);
+    console.log(artStyles);
     console.log(data);
 
     try {
-      const response = await fetch("http://localhost:5002/generate-image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-      console.log("Response from server:", responseData);
-      // Handle response from server as needed
+      // Make sure to include the correct URL and port for your backend
+      const response = await axios.post(
+        "http://localhost:3000/api/sendPrompt",
+        data
+      );
+      console.log("Response from server:", response.data);
     } catch (error) {
-      console.error("Fetch Error:", error);
-      // Handle fetch errors
+      console.error("Error sending data to server:", error);
     }
+
+    setIsGenerating(false);
+
+    // console.log("Type of promptText:", typeof promptText);
+    // console.log("Type of selectedOptions:", typeof artStyles);
   };
 
   return (
@@ -66,11 +69,11 @@ const Hero = () => {
                 type="text"
                 id="prompt-input"
                 className="prompt-input"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                value={promptText}
+                onChange={(e) => setPromptText(e.target.value)}
               />
-              <button type="submit" className="btn">
-                Generate
+              <button type="submit" className="btn" disabled={isGeneratng}>
+                {isGeneratng ? "Generating..." : "Generate"}
               </button>
             </div>
             <div className="container">

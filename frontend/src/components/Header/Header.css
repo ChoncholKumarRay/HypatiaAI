@@ -80,13 +80,14 @@ nav .menu span {
   border-radius: 0.2rem;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 760px) {
   .active {
     border: 1px solid snow;
   }
   nav {
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 0;
   }
   nav .menu {
     display: flex;

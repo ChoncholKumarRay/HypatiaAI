@@ -1,11 +1,10 @@
 #root {
   margin: 0 0;
-  padding: 0;
-  background-color: white;
+  padding: 0 0;
+  background-color: #dde6ed;
 }
 
 .App {
-  background-color: white;
   height: 100%;
   width: 100%;
 }
