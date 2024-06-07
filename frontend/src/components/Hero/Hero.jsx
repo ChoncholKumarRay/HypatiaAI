@@ -68,6 +68,13 @@ const Hero = () => {
     });
   };
 
+  const removeLoaderClassOfCard = (imageId) => {
+    const magicImageCard = document.querySelector(imageId).closest(".card");
+    if (magicImageCard) {
+      magicImageCard.classList.remove("loading");
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (promptText.trim() === "") {
@@ -95,7 +102,7 @@ const Hero = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/sendPrompt", {
+      const response = await fetch("http://localhost:3000/api/imgGen1", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,16 +118,10 @@ const Hero = () => {
       const magic1 = URL.createObjectURL(blob);
 
       // Update the state with the new image URL
-      setImageUrls((prevImageUrls) => {
-        const updatedImageUrls = [...prevImageUrls];
-        updatedImageUrls[0] = magic1;
-        return updatedImageUrls;
-      });
+      updateImageUrlAtIndex(0, magic1);
 
-      // Remove the loading class from cards
-      cards.forEach((card) => {
-        card.classList.remove("loading");
-      });
+      // Remove the loading class only from the card with the image ID "magic-image1"
+      removeLoaderClassOfCard("#magic-image1");
 
       setIsGenerating(false);
     } catch (error) {

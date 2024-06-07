@@ -36,7 +36,7 @@ async function query1(prompt, artStyles) {
   return buffer;
 }
 
-app.post("/api/sendPrompt", async (req, res) => {
+app.post("/api/imgGen1", async (req, res) => {
   const { promptText, artStyles } = req.body;
 
   try {
