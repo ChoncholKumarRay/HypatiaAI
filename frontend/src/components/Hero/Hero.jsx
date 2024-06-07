@@ -102,104 +102,43 @@ const Hero = () => {
       artStyles: artStyles,
     };
 
-    try {
-      const response = await fetch("http://localhost:3000/api/imgGen1", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const fetchImage = async (url, index, imageId) => {
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch image");
+        if (!response.ok) {
+          if (index === 1) {
+            updateImageUrlAtIndex(index, busyIcon);
+            removeLoaderClassOfCard(imageId);
+          }
+          throw new Error("Failed to fetch image");
+        }
+
+        const blob = await response.blob();
+        const generatedImageURL = URL.createObjectURL(blob);
+        updateImageUrlAtIndex(index, generatedImageURL);
+        removeLoaderClassOfCard(imageId);
+      } catch (error) {
+        console.error(`Error fetching image ${index + 1}:`, error);
       }
+    };
 
-      const blob = await response.blob();
-      const magic1 = URL.createObjectURL(blob);
+    const imageRequests = [
+      fetchImage("http://localhost:3000/api/imgGen1", 0, "#magic-image1"),
+      fetchImage("http://localhost:3000/api/imgGen2", 1, "#magic-image2"),
+      fetchImage("http://localhost:3000/api/imgGen3", 2, "#magic-image3"),
+      fetchImage("http://localhost:3000/api/imgGen4", 3, "#magic-image4"),
+    ];
 
-      // Update the state with the new image URL
-      updateImageUrlAtIndex(0, magic1);
+    await Promise.all(imageRequests);
 
-      // Remove the loading class only from the card with the image ID "magic-image1"
-      removeLoaderClassOfCard("#magic-image1");
-
-      setIsGenerating(false);
-    } catch (error) {
-      console.error("Error sending data to server:", error);
-      setIsGenerating(false);
-    }
-
-    // For the second Image requsting api
-    try {
-      const response = await fetch("http://localhost:3000/api/imgGen2", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        updateImageUrlAtIndex(1, busyIcon);
-        removeLoaderClassOfCard("#magic-image2");
-        throw new Error("Failed to fetch image");
-      }
-      const blob = await response.blob();
-      const generatedImageURL = URL.createObjectURL(blob);
-      updateImageUrlAtIndex(1, generatedImageURL);
-      removeLoaderClassOfCard("#magic-image2");
-      setIsGenerating(false);
-    } catch (error) {
-      console.error("Error sending data to server:", error);
-      setIsGenerating(false);
-    }
-
-    // For the third Image requesting api
-    try {
-      const response = await fetch("http://localhost:3000/api/imgGen3", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch image");
-      }
-      const blob = await response.blob();
-      const generatedImageURL = URL.createObjectURL(blob);
-      updateImageUrlAtIndex(2, generatedImageURL);
-      removeLoaderClassOfCard("#magic-image3");
-      setIsGenerating(false);
-    } catch (error) {
-      console.error("Error sending data to server:", error);
-      setIsGenerating(false);
-    }
-
-    // For the Forth Image requesting api
-    try {
-      const response = await fetch("http://localhost:3000/api/imgGen4", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch image");
-      }
-      const blob = await response.blob();
-      const generatedImageURL = URL.createObjectURL(blob);
-      updateImageUrlAtIndex(3, generatedImageURL);
-      removeLoaderClassOfCard("#magic-image4");
-      setIsGenerating(false);
-    } catch (error) {
-      console.error("Error sending data to server:", error);
-      setIsGenerating(false);
-    }
+    setIsGenerating(false); // Enable the generate button after all requests are done
   };
 
   return (
