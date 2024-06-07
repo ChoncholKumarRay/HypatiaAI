@@ -7,6 +7,7 @@ import img1 from "../../assets/img-1.jpg";
 import img2 from "../../assets/img-2.jpg";
 import img3 from "../../assets/img-3.jpg";
 import img4 from "../../assets/img-4.jpg";
+import loaderIcon from "../../assets/loader.svg";
 import downloadIcon from "../../assets/download.svg";
 
 const generateRandomString = (length) => {
@@ -30,7 +31,7 @@ const Hero = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [promptText, setPromptText] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [image, setImage] = useState(null);
+  const [imageUrls, setImageUrls] = useState([img1, img2, img3, img4]);
   const galleryRef = useRef(null);
 
   const toggleSelection = (option) => {
@@ -59,6 +60,14 @@ const Hero = () => {
     }
   };
 
+  const updateImageUrlAtIndex = (index, newImageUrl) => {
+    setImageUrls((prevImageUrls) => {
+      const updatedImageUrls = [...prevImageUrls];
+      updatedImageUrls[index] = newImageUrl;
+      return updatedImageUrls;
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (promptText.trim() === "") {
@@ -67,6 +76,14 @@ const Hero = () => {
     }
 
     setIsGenerating(true); // Disabling the generate button
+
+    // Set loader icons and add loading class to images
+    setImageUrls([loaderIcon, loaderIcon, loaderIcon, loaderIcon]);
+
+    const cards = document.querySelectorAll(".gallery .card");
+    cards.forEach((card) => {
+      card.classList.add("loading");
+    });
 
     const artStyles = selectedOptions
       .map((option) => `/${option.toLowerCase()}`)
@@ -78,14 +95,33 @@ const Hero = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/sendPrompt",
-        data
-      );
-      console.log("Response from server:", response);
-      console.log("Response from server:", response.data);
-      console.log("Image1 URL: ", response.data.img1);
-      // setImage(response.data.imageURL); // Assuming response.data.imageURL contains the image URL
+      const response = await fetch("http://localhost:3000/api/sendPrompt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch image");
+      }
+
+      const blob = await response.blob();
+      const magic1 = URL.createObjectURL(blob);
+
+      // Update the state with the new image URL
+      setImageUrls((prevImageUrls) => {
+        const updatedImageUrls = [...prevImageUrls];
+        updatedImageUrls[0] = magic1;
+        return updatedImageUrls;
+      });
+
+      // Remove the loading class from cards
+      cards.forEach((card) => {
+        card.classList.remove("loading");
+      });
+
       setIsGenerating(false);
     } catch (error) {
       console.error("Error sending data to server:", error);
@@ -143,37 +179,37 @@ const Hero = () => {
       </section>
       <section className="gallery" ref={galleryRef}>
         <div className="card">
-          <img src={img1} alt="" id="magic-image1" />
+          <img src={imageUrls[0]} alt="" id="magic-image1" />
           <button
             className="download-btn"
-            onClick={(event) => handleDownload(event, img1)}
+            onClick={(event) => handleDownload(event, imageUrls[0])}
           >
             <img src={downloadIcon} alt="Download" />
           </button>
         </div>
         <div className="card">
-          <img src={img2} alt="" id="magic-image2" />
+          <img src={imageUrls[1]} alt="" id="magic-image2" />
           <button
             className="download-btn"
-            onClick={(event) => handleDownload(event, img2)}
+            onClick={(event) => handleDownload(event, imageUrls[1])}
           >
             <img src={downloadIcon} alt="Download" />
           </button>
         </div>
         <div className="card">
-          <img src={img3} alt="" id="magic-image3" />
+          <img src={imageUrls[2]} alt="" id="magic-image3" />
           <button
             className="download-btn"
-            onClick={(event) => handleDownload(event, img3)}
+            onClick={(event) => handleDownload(event, imageUrls[2])}
           >
             <img src={downloadIcon} alt="Download" />
           </button>
         </div>
         <div className="card">
-          <img src={img4} alt="" id="magic-image4" />
+          <img src={imageUrls[3]} alt="" id="magic-image4" />
           <button
             className="download-btn"
-            onClick={(event) => handleDownload(event, img4)}
+            onClick={(event) => handleDownload(event, imageUrls[3])}
           >
             <img src={downloadIcon} alt="Download" />
           </button>
