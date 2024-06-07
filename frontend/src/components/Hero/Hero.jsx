@@ -36,9 +36,9 @@ const Hero = () => {
       artStyles: artStyles,
     };
 
-    console.log(promptText);
-    console.log(artStyles);
-    console.log(data);
+    // console.log(promptText);
+    // console.log(artStyles);
+    // console.log(data);
 
     try {
       // Make sure to include the correct URL and port for your backend
@@ -47,11 +47,10 @@ const Hero = () => {
         data
       );
       console.log("Response from server:", response.data);
+      setIsGenerating(false);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
-
-    setIsGenerating(false);
 
     // console.log("Type of promptText:", typeof promptText);
     // console.log("Type of selectedOptions:", typeof artStyles);

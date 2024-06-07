@@ -104,6 +104,11 @@
   background: #005c78;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  background: #393646;
+}
+
 .container {
   width: 60%;
   margin: 0 auto;
