@@ -49,13 +49,20 @@
 }
 
 .footer-section .social-links a {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin: 0 10px;
 }
 
 .footer-section .social-links img {
   width: 24px;
   height: 24px;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-bottom {
