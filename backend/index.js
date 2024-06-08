@@ -48,7 +48,7 @@ const filterPromptText = (promptText) => {
 async function query1(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [trending on artstation]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    model: 'yodayo-ai/kivotos-xl-2.0',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 50,
@@ -70,7 +70,7 @@ async function query1(prompt, artStyles) {
 async function query2(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    model: 'yodayo-ai/kivotos-xl-2.0',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 70,
@@ -89,7 +89,7 @@ async function query2(prompt, artStyles) {
 async function query3(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [award-winning on CGSociety]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    model: 'yodayo-ai/kivotos-xl-2.0',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 80,
@@ -109,7 +109,7 @@ async function query3(prompt, artStyles) {
 async function query4(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    model: 'yodayo-ai/kivotos-xl-2.0',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 70,
