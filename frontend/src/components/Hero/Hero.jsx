@@ -128,10 +128,26 @@ const Hero = () => {
     };
 
     const imageRequests = [
-      fetchImage("http://localhost:3000/api/imgGen1", 0, "#magic-image1"),
-      fetchImage("http://localhost:3000/api/imgGen2", 1, "#magic-image2"),
-      fetchImage("http://localhost:3000/api/imgGen3", 2, "#magic-image3"),
-      fetchImage("http://localhost:3000/api/imgGen4", 3, "#magic-image4"),
+      fetchImage(
+        "https://hypatiaai-api.onrender.com/api/imgGen1",
+        0,
+        "#magic-image1"
+      ),
+      fetchImage(
+        "https://hypatiaai-api.onrender.com/api/imgGen2",
+        1,
+        "#magic-image2"
+      ),
+      fetchImage(
+        "https://hypatiaai-api.onrender.com/api/imgGen3",
+        2,
+        "#magic-image3"
+      ),
+      fetchImage(
+        "https://hypatiaai-api.onrender.com/api/imgGen4",
+        3,
+        "#magic-image4"
+      ),
     ];
 
     await Promise.all(imageRequests);
