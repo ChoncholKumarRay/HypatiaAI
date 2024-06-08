@@ -113,10 +113,8 @@ const Hero = () => {
         });
 
         if (!response.ok) {
-          if (index === 1) {
-            updateImageUrlAtIndex(index, busyIcon);
-            removeLoaderClassOfCard(imageId);
-          }
+          updateImageUrlAtIndex(index, busyIcon);
+          removeLoaderClassOfCard(imageId);
           throw new Error("Failed to fetch image");
         }
 
@@ -138,7 +136,7 @@ const Hero = () => {
 
     await Promise.all(imageRequests);
 
-    setIsGenerating(false); // Enable the generate button after all requests are done
+    setIsGenerating(false);
   };
 
   return (
