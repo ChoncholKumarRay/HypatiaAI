@@ -17,31 +17,33 @@ const Footer = () => {
           <div className="footer-section social-links">
             <h2>Follow Us</h2>
             <div className="social-icon">
-              <a
-                href="https://www.facebook.com/camsust"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebookF />
-              </a>
-            </div>
-            <div className="social-icon">
-              <a
-                href="https://www.youtube.com/@cam-sust7650"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaYoutube />
-              </a>
-            </div>
-            <div className="social-icon">
-              <a
-                href="https://x.com/camsust"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter />
-              </a>
+              <div>
+                <a
+                  href="https://www.facebook.com/camsust"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebookF />
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://www.youtube.com/@cam-sust7650"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaYoutube />
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://x.com/camsust"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTwitter />
+                </a>
+              </div>
             </div>
           </div>
           <div className="footer-section developer">
