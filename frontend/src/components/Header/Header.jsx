@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
+import logoIcon from "../../assets/logo.png";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
   return (
     <nav>
       <div className="logo-title">
-        <img src="src/assets/logo.png" alt="" className="logo" />
+        <img src={logoIcon} alt="" className="logo" />
         <Link to="/" className="site-title">
           HypatiaAI
         </Link>
