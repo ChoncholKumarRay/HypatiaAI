@@ -112,9 +112,9 @@ async function query4(prompt, artStyles) {
     model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'noisy',
-      num_inference_steps: 90,
-      guidance_scale: 9.5,
-      seed: 1990,
+      num_inference_steps: 70,
+      guidance_scale: 8.5,
+      seed: 0,
       width: 512,
       height: 512,
     }
