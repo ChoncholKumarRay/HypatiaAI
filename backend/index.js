@@ -47,7 +47,7 @@ const filterPromptText = (promptText) => {
 // ML MODEL 1
 async function query1(prompt, artStyles) {
   const response = await hf.textToImage({
-    inputs: `${prompt} ${artStyles} [trending on artstation]`,
+    inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
     model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'blurry',
@@ -62,15 +62,15 @@ async function query1(prompt, artStyles) {
   // Convert response to arrayBuffer and then to Buffer
   const arrayBuffer = await response.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
-  console.log("Prompt1: ", `${prompt} ${artStyles} [trending on artstation]`);
+  console.log("Prompt: ", `${prompt} ${artStyles} [trending on artstation]`);
   return buffer;
 }
 
 // ML MODEL 2
 async function query2(prompt, artStyles) {
   const response = await hf.textToImage({
-    inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    inputs: `${prompt} ${artStyles} [award-winning on CGSociety]`,
+    model: 'stabilityai/stable-cascade',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 70,
@@ -88,7 +88,7 @@ async function query2(prompt, artStyles) {
 // ML MODEL 3
 async function query3(prompt, artStyles) {
   const response = await hf.textToImage({
-    inputs: `${prompt} ${artStyles} [award-winning on CGSociety]`,
+    inputs: `${prompt} ${artStyles} [trending on artstation]`,
     model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'noisy',
@@ -109,7 +109,7 @@ async function query3(prompt, artStyles) {
 async function query4(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-diffusion-xl-base-1.0',
+    model: 'stabilityai/stable-cascade',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 90,
