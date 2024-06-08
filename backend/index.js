@@ -47,7 +47,7 @@ const filterPromptText = (promptText) => {
 // ML MODEL 1
 async function query1(prompt, artStyles) {
   const response = await hf.textToImage({
-    inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
+    inputs: `${prompt} ${artStyles}`,
     model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'blurry',
@@ -70,7 +70,7 @@ async function query1(prompt, artStyles) {
 async function query2(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [award-winning on CGSociety]`,
-    model: 'stabilityai/stable-cascade',
+    model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 70,
@@ -108,8 +108,8 @@ async function query3(prompt, artStyles) {
 // ML MODEL 4
 async function query4(prompt, artStyles) {
   const response = await hf.textToImage({
-    inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-cascade',
+    inputs: `${prompt} ${artStyles}`,
+    model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 90,
