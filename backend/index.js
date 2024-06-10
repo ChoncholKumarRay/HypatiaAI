@@ -48,7 +48,7 @@ const filterPromptText = (promptText) => {
 async function query1(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [trending on artstation]`,
-    model: 'yodayo-ai/kivotos-xl-2.0',
+    model: 'stabilityai/stable-diffusion-2-1-base',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 50,
