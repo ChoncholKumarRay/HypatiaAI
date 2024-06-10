@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./Hero.css";
 
@@ -34,6 +34,44 @@ const Hero = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [imageUrls, setImageUrls] = useState([img1, img2, img3, img4]);
   const galleryRef = useRef(null);
+  const [placeholder, setPlaceholder] = useState("");
+
+  useEffect(() => {
+    const typingEffect = () => {
+      const text = "An astronaut riding a horse, detailed, photo realistic";
+      let index = 0;
+      let isAdding = true;
+      const speed = 100;
+      const pauseDuration = 2500;
+      const deleteSpeed = 50;
+
+      const type = () => {
+        if (isAdding) {
+          if (index < text.length) {
+            setPlaceholder(text.slice(0, index + 1));
+            index++;
+            setTimeout(type, speed);
+          } else {
+            isAdding = false;
+            setTimeout(type, pauseDuration);
+          }
+        } else {
+          if (index > 0) {
+            setPlaceholder(text.slice(0, index - 1));
+            index--;
+            setTimeout(type, deleteSpeed);
+          } else {
+            isAdding = true;
+            setTimeout(type, speed);
+          }
+        }
+      };
+
+      type();
+    };
+
+    typingEffect();
+  }, []);
 
   const toggleSelection = (option) => {
     setSelectedOptions((prevSelected) => {
@@ -169,6 +207,7 @@ const Hero = () => {
                 className="prompt-input"
                 value={promptText}
                 onChange={(e) => setPromptText(e.target.value)}
+                placeholder={placeholder}
               />
               <button type="submit" className="btn" disabled={isGenerating}>
                 {isGenerating ? "Generating..." : "Generate"}
