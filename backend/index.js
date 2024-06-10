@@ -54,8 +54,6 @@ async function query1(prompt, artStyles) {
       num_inference_steps: 50,
       guidance_scale: 7.5,
       seed: 1234,
-      width: 512,
-      height: 512,
     }
   });
 
@@ -70,7 +68,7 @@ async function query1(prompt, artStyles) {
 async function query2(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'yodayo-ai/kivotos-xl-2.0',
+    model: 'stabilityai/stable-diffusion-2-1-base',
     parameters: {
       negative_prompt: 'blurry',
       num_inference_steps: 70,
@@ -89,7 +87,7 @@ async function query2(prompt, artStyles) {
 async function query3(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [award-winning on CGSociety]`,
-    model: 'yodayo-ai/kivotos-xl-2.0',
+    model: 'stabilityai/stable-diffusion-2-1-base',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 80,
@@ -109,7 +107,7 @@ async function query3(prompt, artStyles) {
 async function query4(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'yodayo-ai/kivotos-xl-2.0',
+    model: 'stabilityai/stable-diffusion-2-1-base',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 70,
@@ -182,3 +180,12 @@ app.post("/api/imgGen4", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+
+
+// Ai Models that successfully run:
+/**
+ * 
+ * yodayo-ai/kivotos-xl-2.0
+ * stabilityai/stable-diffusion-2-1-base
+ */
