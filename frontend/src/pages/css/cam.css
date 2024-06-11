@@ -5,12 +5,12 @@
   padding-bottom: 20px;
   font-family: serif;
   line-height: 1.6;
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .content-section {
   padding: 40px 20px;
-  background: #fff;
+  background: #eee;
   margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
