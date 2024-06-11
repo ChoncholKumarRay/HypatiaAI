@@ -1,9 +1,9 @@
 .cam {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
-  padding-top: 40px;
-  font-family: "Georgia", serif;
+  padding: 40px 0;
+  padding-bottom: 20px;
+  font-family: serif;
   line-height: 1.6;
   background-color: #eee;
 }
@@ -67,22 +67,16 @@
   object-fit: cover;
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 @media (max-width: 768px) {
   .cam-container {
-    padding-right: 60px;
+    padding-right: 40px;
   }
 }
 
 @media (max-width: 540px) {
+  .cam-container {
+    padding-right: 20px;
+  }
   .activity {
     padding: 0 20px;
     gap: 60px;

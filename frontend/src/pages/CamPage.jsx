@@ -1,6 +1,11 @@
 import React from "react";
 import "./css/cam.css";
-import img1 from "../assets/img-1.jpg";
+import studyCircleIcon from "../assets/study-circle.jpeg";
+import cosmaniaIcon from "../assets/cosmania.jpeg";
+import astroCarnivalIcon from "../assets/astro-carnival.jpeg";
+import starGazingIcon from "../assets/star-gazing.jpeg";
+import spaceWeekIcon from "../assets/space-week.jpeg";
+import seminarIcon from "../assets/seminar.jpeg";
 
 const CamPage = () => {
   return (
@@ -33,22 +38,22 @@ const CamPage = () => {
           <h2>Activities</h2>
           <div className="activity">
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={studyCircleIcon} alt="" />
             </div>
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={cosmaniaIcon} alt="" />
             </div>
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={astroCarnivalIcon} alt="" />
             </div>
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={starGazingIcon} alt="" />
             </div>
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={seminarIcon} alt="" />
             </div>
             <div className="act">
-              <img src={img1} alt="" />
+              <img src={spaceWeekIcon} alt="" />
             </div>
           </div>
         </div>
