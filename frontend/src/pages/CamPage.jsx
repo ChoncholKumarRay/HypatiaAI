@@ -6,7 +6,7 @@ const CamPage = () => {
   return (
     <div className="cam">
       <section className="content-section">
-        <div className="container">
+        <div className="cam-container">
           <h2>About CAM-SUST</h2>
           <p>
             Copernicus Astronomical Memorial of SUST (CAM-SUST) is the only
@@ -29,7 +29,7 @@ const CamPage = () => {
       </section>
 
       <section id="activities" className="content-section">
-        <div className="container">
+        <div className="cam-container">
           <h2>Activities</h2>
           <div className="activity">
             <div className="act">
@@ -51,25 +51,6 @@ const CamPage = () => {
               <img src={img1} alt="" />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="contact" className="content-section">
-        <div className="container">
-          <h2>Contact Us</h2>
-          <p>For more information, feel free to reach out to us:</p>
-          <p>Email: info@cam-sust.org</p>
-          <p>Phone: +880 1234 567890</p>
-          <p>
-            Visit our website:{" "}
-            <a
-              href="https://cam-sust.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              https://cam-sust.org/
-            </a>
-          </p>
         </div>
       </section>
     </div>
