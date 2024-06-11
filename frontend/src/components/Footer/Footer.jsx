@@ -8,7 +8,7 @@ const Footer = () => {
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-section about">
-            <h2>About</h2>
+            <h2>About the App</h2>
             <p>
               This Web Application is an Ed-Tech project from IT Sector of
               CAM-SUST, 11th Executive Committee. The application is built with
