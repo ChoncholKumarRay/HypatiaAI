@@ -10,7 +10,8 @@ const Footer = () => {
           <div className="footer-section about">
             <h2>About</h2>
             <p>
-              This Web Application is an Ed-Tech project of CAM-SUST. Build with
+              This Web Application is an Ed-Tech project from IT Sector of
+              CAM-SUST, 11th Executive Committee. The application is built with
               Stability AI Model.
             </p>
           </div>
