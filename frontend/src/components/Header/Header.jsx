@@ -32,10 +32,10 @@ const Header = () => {
           <NavLink to="/">Create</NavLink>
         </li>
         <li onClick={handleMenuClick}>
-          <NavLink to="/contest">Contest</NavLink>
+          <NavLink to="/about">About</NavLink>
         </li>
         <li onClick={handleMenuClick}>
-          <NavLink to="/submission">Submission</NavLink>
+          <NavLink to="/cam">CAM-SUST</NavLink>
         </li>
       </ul>
     </nav>

@@ -1,6 +1,6 @@
 // pages/index.js
 import HomePage from './HomePage';
-import ContestPage from './ContestPage';
-import SubmissionPage from './SubmissionPage';
+import AboutPage from './AboutPage';
+import CamPage from './CamPage';
 
-export { HomePage, ContestPage, SubmissionPage };
+export { HomePage, AboutPage, CamPage };
