@@ -107,7 +107,7 @@ async function query3(prompt, artStyles) {
 async function query4(prompt, artStyles) {
   const response = await hf.textToImage({
     inputs: `${prompt} ${artStyles} [featured on DeviantArt]`,
-    model: 'stabilityai/stable-diffusion-2-1-base',
+    model: 'stabilityai/stable-diffusion-xl-base-1.0',
     parameters: {
       negative_prompt: 'noisy',
       num_inference_steps: 70,
